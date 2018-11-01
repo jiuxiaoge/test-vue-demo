@@ -12,19 +12,22 @@ var app = new Vue({
                 id: 1,
                 name: 'iPhone 7',
                 price: 6188,
-                count: 1
+                count: 1,
+                picked: false
             },
             {
                 id: 2,
                 name: 'iPad pro',
                 price: 5888,
-                count: 1
+                count: 1,
+                picked: false
             },
             {
                 id: 3,
                 name: 'MacBook Pro',
                 price: 21488,
-                count: 1
+                count: 1,
+                picked: false
             }
         ]
     },
@@ -34,7 +37,9 @@ var app = new Vue({
             var total = 0;
             for (var i = 0; i < this.list.length; i++){
                 var item = this.list[i];
-                total += item.price * item.count; // 总价等于单价乘以数量
+                if (item.picked){
+                    total += item.price * item.count; // 总价等于单价乘以数量
+                }
             }
             // 这里应用到了正则匹配，千位分隔符
             return total.toString().replace(/\B(?=(\d{3})+$)/g, ',');
